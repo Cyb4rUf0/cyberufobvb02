@@ -1,0 +1,45 @@
+# Ensure your keys and values have a space between them
+# Example:
+# Bad:
+#   access_key:myaccess_key
+# Good:
+#   access_key: myaccess_key 
+#prod:
+  #access_key: j76ylbPypzAiN11hx5R3aOqhv661c3UZcWDLsbJqSYUE613VQResIAKwAOotNhVI
+  #secret_key: zystFiHb1VvZ3bOGDGtE2CfbVPQ0g3vl8rUUqmf6ALy0STxiIa9TVoaxqXcnneJr
+
+#PRUEBAS
+prod:
+  access_key: 8Fko1jYGnjD0kSqtRdRbr7dL0nY2Z9Kzkstt66rGoIzYyScKIfH2geISQcxZCEo1
+  secret_key: 3A4ycOEtJdslnUhjNNBCYTbXlVybMInDbNaXFZXcRN3XZofplznULOmIYYCW7zzh
+
+discord:
+  # You only need the portion after webhooks
+  # i.e. https://discord.com/api/webhooks/XXX/YYYYY ends up being as below
+  DISCORD_WEBHOOK: 898791159437094942/HXsZoZRaRc0nIWH2Z7S-SVyDKWHtQRxYPyuFW1LvOObwWqUMUNsd_OnMyQboAl090jI- #Horus_VolScanUp_01
+  #DISCORD_WEBHOOK: 898791649130463233/vvzXGwfA0dBhOPKPzLqCFT2uVzHJrpt2BrCBUlFE4cNsmgSZ7t483tjMxkvZuflZNozO #Horus_VolScanUp_02
+  #DISCORD_WEBHOOK: 898791978538504212/OIlqVbcCfXjBLJhYlFK-OaNgyQ96wZpUSsnezuAgt16JIQnWJ7l4LSLWgdIl-9zo2JaX #Horus_VolScanDown
+  
+
+#Api TestFakeAccount
+#API_KEY = '8Fko1jYGnjD0kSqtRdRbr7dL0nY2Z9Kzkstt66rGoIzYyScKIfH2geISQcxZCEo1'
+#API_SECRET = '3A4ycOEtJdslnUhjNNBCYTbXlVybMInDbNaXFZXcRN3XZofplznULOmIYYCW7zzh'
+
+#REALES FULL VIEJA
+#API_KEY = 'Z2PTzH44R8pSH8iwY5SW4HkwjO8uYC4tGCsAbwcq4CQdXj6rQMsB95yMYAMua90a'
+#API_SECRET = '0Oj4SAIZtfcQhkMQrsGGbg1q3WlbEWyZff6wQnqvIcgUcUXMHF32OFhclI6RRTMq'
+
+#Api TestNet (Nueva)
+
+#API_KEY = AQoHXxbi9FKHcDtsCrH6ZnAZstgNQhc1Cmt5cVeXd5tvxCFJZqJXouopGIQccUux
+#Secret_Key = 9XqB5sOj4bN0cuztJmbdNjc0B0nuMOdOvXnvQn72ceLNjjSeYmrmTIgrF7IZY83Y
+
+#Api REAL Full (Nueva)
+
+#api_key = j76ylbPypzAiN11hx5R3aOqhv661c3UZcWDLsbJqSYUE613VQResIAKwAOotNhVI
+#api_secret = zystFiHb1VvZ3bOGDGtE2CfbVPQ0g3vl8rUUqmf6ALy0STxiIa9TVoaxqXcnneJr
+
+#Api REAL solo lectura (Nueva)
+
+#api_key = MD9Gc5Z1SpYwtxyGbAD46A5Qh3xltwVZ2f6WDSbsRs1slKmol9USZ0EGJ3r07hF8
+#api_secret = 5PZL3m56GMOEpy4N2Bh7XGx6sumPbMz467RejQhzYrVxYzCIqABnPEkfU7zaWzY8

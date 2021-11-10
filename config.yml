@@ -1,0 +1,155 @@
+# These options apply to how the script will operate.
+script_options:
+  # Switch between testnet and mainnet
+  # Setting this to False will use REAL funds, use at your own risk
+  TEST_MODE: True
+  LOG_TRADES: True
+  LOG_FILE: 'trades.txt'
+  DEBUG: True
+
+  # Set this to true if you are accessing binance from within the United States of America
+  # Need to change TLD
+  AMERICAN_USER: False
+  
+volscan_options:
+  
+  #MODIFICACIONES
+  VOLSCAN_POSITIVE: True
+  VOLSCAN_PRICE_THRESHOLD: 0 #Can be a Negative Number # 0.33
+
+  # SCANNING_PERIOD - by default, we check the price difference for each coin on Binance for the last 3 minutes,
+  # you can change this value for different results.
+  # This also determines how often each iteration of the code is executed.
+  SCANING_PERIOD: 3
+
+  # TIME_SLEEP - how many seconds do you want between each price scan.
+  # By default, every 12 seconds the price change will be recorded during SCANNING_PERIOD (3min)
+  # After which the calculation is performed. The price change is also calculated every 12 seconds.
+  TIME_SLEEP: 15
+  
+  # If True, an updated list of coins will be generated from the site - http://edgesforledges.com/watchlists/binance.
+  # If False, then the list you create in TICKERS_LIST = 'tickers.txt' will be used.
+  CREATE_TICKER_LIST: False
+
+  # NUMBER_COINS_IN_LIST - Limit the number of coins that can be added to the dynamic list of volatile coins. For example,
+  # if NUMBER_COINS_IN_LIST = 20,
+  # then each period only 20 sorted coins will be added to the list (Above the lowest values with a minus sign).
+  NUMBER_COINS_IN_LIST: 2
+
+  # CV_INDEX - Coefficient of Variation. Only those coins with a COV greater than the specified value will be displayed.
+  CoV_INDEX: 0 #0.33
+
+  # CREATE_LIST_BY_COV_AND_PRICE_CHANGE is a filter for creating dynamic lists of the most volatile coins.
+  # If COV_FILTER = True, lists of volatile coins will take into account the CoV parameter.
+  # For example,
+  # if CoV_INDEX = 0.5, then only coins with CoV above 0.5 and price change less than 0 will be added to list.
+  # If False will be used only Price Change.
+  CREATE_LIST_BY_COV_AND_PRICE_CHANGE: True
+  
+  # CREATE_LIST_BY_ONLY_COV - If True - A dynamic list of volatile coins will be created only based on the CoV parameter.
+  # For example: If CoV_INDEX = 0.3 then the list will include coins with CoV_INDEX greater than 0.3 and the list will be
+  # sorted
+  # (At the top there will be coins with the highest CoV)
+  # If False The list will be created only based on the Price Change.
+  CREATE_LIST_BY_ONLY_COV: False
+
+
+# These options apply to the trading methods the script executes
+trading_options:
+ 
+  # select your base currency to use for trading (trade for example USDT pairs)
+  PAIR_WITH: USDT
+
+  # Total amount per trade (your base currency balance must be at least TRADE_SLOTS * TRADE_TOTAL)
+  # Binance uses a minimum of 10 USDT per trade, add a bit extra to enable selling if the price drops.
+  # Recommended: no less than 12 USDT. Suggested: 15 or more.
+  TRADE_TOTAL: 999
+
+  # List of trading pairs to exclude
+  # by default we're excluding the most popular fiat pairs
+  FIATS:
+    - EURUSDT
+    - GBPUSDT
+    - JPYUSDT
+    - USDUSDT
+    - AUDUSDT
+    - DOWN
+    - UP
+
+  # Maximum number of trade 'slots' at any time (your USDT balance must be at least TRADE_SLOTS * TRADE_TOTAL)
+  TRADE_SLOTS: 16
+
+  # the amount of time in MINUTES to calculate the difference from the current price (minimum: 1).
+  TIME_DIFFERENCE: 2 #Modificacion necesaria para correr VolScan - AUMENTAR (2)
+
+  # Number of times to check for TP/SL during each TIME_DIFFERENCE (minimum: 1).
+  # Don't spam the Binance API, you will be banned (max 1200 requests per minute per IP).
+  RECHECK_INTERVAL: 30 #Modificacion Necesaria para correr VolScan - AUMENTAR (12)
+
+  # the difference in % between the first and second checks for the price.
+  CHANGE_IN_PRICE: 100 #Para usar VolScan se debe aumentar a 100 este valor (1.43)
+
+  # define in % when to sell a coin that's not making a profit.
+  STOP_LOSS: 3.33 #The Snail: 100
+
+  # define in % when to take profit on a profitable coin.
+  TAKE_PROFIT: 1.33 #The Snail: 2.5
+
+  # Use custom tickers.txt list for filtering pairs.
+  CUSTOM_LIST: True
+  # Whether to automatically reload the custom tickers list
+  CUSTOM_LIST_AUTORELOAD: False
+  # Name of custom tickers list
+  TICKERS_LIST: 'tickers_special_01.txt'
+     
+  # whether to use trailing stop loss or not; default is True
+  # when hit TAKE_PROFIT, move STOP_LOSS to TRAILING_STOP_LOSS percentage points below TAKE_PROFIT hence locking in profit
+  # when hit TAKE_PROFIT, move TAKE_PROFIT up by TRAILING_TAKE_PROFIT percentage points
+  # NOTE -SELL_ON_SIGNAL_ONLY will override USE_TRAILING_STOP_LOSS
+  USE_TRAILING_STOP_LOSS: True
+  TRAILING_STOP_LOSS: .19 #The Snail 1.5
+  TRAILING_TAKE_PROFIT: .1
+
+  # Following are used to override SL, TP, TSL & TTP & SELL_ON_SIGNAL_ONLY in the case of a market crash
+  # when hit SESSION_TAKE_PROFIT %, sell all coins and stop bot
+  # when hit SESSION_STOP_LOSS %, sell all coins and stop bot.
+  # Note, SESSION_STOP_LOSS needs to be a NEGATIVE number i.e. -2
+  SESSION_TPSL_OVERRIDE: True
+  SESSION_TAKE_PROFIT: 23
+  SESSION_STOP_LOSS: -6.33
+
+  # Let a signalling module control sell of coin
+  # NOTE - If USE_TRAILING_STOP_LOSS: True then this needs to be False
+  SELL_ON_SIGNAL_ONLY: False
+
+  # Trading fee in % per trade.
+  # If using 0.075% (using BNB for fees) you must have BNB in your account to cover trading fees.
+  # If using BNB for fees, it MUST be enabled in your Binance 'Dashboard' page (checkbox).
+  TRADING_FEE: 0.075
+
+  # Discord integration
+  # Used to push alerts, messages etc to a discord channel
+  MSG_DISCORD: True
+
+  # This will tell the bot to restart signal modules every hour. This may be useful if for some reason you want to "reset"
+  # signal modules.
+  # In EXTSIGNAL_MODULES put the signalling module you want to restart every hour NOTE: THIS MUST EXIST IN SIGNALLING_MODULES!!!!!
+  RESTART_EXTSIGNALS: False
+  EXTSIGNAL_MODULES:
+    #- os_signalbuy_3SMAv2 
+  
+  SIGNALLING_MODULES:
+    # NOTE: Only use the "os_xxxxxxxxx" or "nigec_xxxxxxxxx" etc signal/pause modules with this fork as 
+    # the default ones WILL NOT work due to customisations for my specific purposes
+    #
+    - os_pausebot_RECOMMv2
+    #- os_pausebot_MAv2
+    #- os_signalbuy_RECOMM
+    - vyacheslav_signalbuy_VolScan
+    #- scoobie_signalbuy_thesnail
+    # - os_signalsell_RECOMM
+    # - os_signalbuy_3SMAv2
+    #- rsi-mod
+
+    
+  
